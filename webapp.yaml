@@ -2,10 +2,10 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: webapp-deployment
-  labels: 
+  labels:
     app: webapp
 spec:
-  replicas: 1  
+  replicas: 1
   selector:
     matchLabels:
       app: webapp
@@ -20,8 +20,8 @@ spec:
         ports:
         - containerPort: 3000
         env:
-        - name: USER-NAME
-          valueFrom: 
+        - name: USER_NAME
+          valueFrom:
             secretKeyRef:
               name: mongo-secret
               key: mongo-user
@@ -29,9 +29,9 @@ spec:
           valueFrom:
             secretKeyRef:
               name: mongo-secret
-              key: mongo-password
-        - name: DB-URL
-          valueFrom: 
+              key: mongo-password 
+        - name: DB_URL
+          valueFrom:
             configMapKeyRef:
               name: mongo-config
               key: mongo-url
